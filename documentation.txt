@@ -1,0 +1,24 @@
+Django::Creating a new app
+
+run:: py manage.py startapp appname
+add:: appname to main app settings
+add:: urls.py to appname
+add:: from django.conf.urls import url
+      from . import views
+      app_name = 'appname'
+
+      urlpatterns =[
+        url(r'^signup/$', views.function, name='signup')
+      ]
+
+include this urls.py in main app urls.py file
+
+add:: url(r'^appname/', include('accounts.urls'))
+
+now move to views.py file in appname::
+create a function that is used in urlpatterns in urls.py file in the same app
+
+def function(request):
+  return render(request, 'appname/template.html')
+
+now create template folder in appname then inside it make a new folder of name appname, inside of which we will keep our templates for appname

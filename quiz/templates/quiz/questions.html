@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Questions</h1>
+    <div class="questions">
+      {% for question in questions %}
+      <div class="question">
+        <h2>{{question.question}}</h2>
+        <img src="{{question.diagram.url}}" alt="diagram"/>
+<ol>
+  <li>{{question.option1}}</li>
+  <li>{{question.option2}}</li>
+  <li>{{question.option3}}</li>
+  <li>{{question.option4}}</li>
+</ol>
+      </div>
+
+      {% endfor %}
+    </div>
+{% endblock %}
