@@ -3,18 +3,26 @@
 {% block content %}
     <h1>Questions</h1>
     <div class="questions">
-      {% for question in questions %}
-      <div class="question">
-        <h2>{{question.question}}</h2>
-        <img src="{{question.diagram.url}}" alt="diagram"/>
-<ol>
-  <li>{{question.option1}}</li>
-  <li>{{question.option2}}</li>
-  <li>{{question.option3}}</li>
-  <li>{{question.option4}}</li>
-</ol>
-      </div>
 
-      {% endfor %}
+      <form class="question" action="{% url 'quiz:result' slug=slug%}" method="post">
+        
+        {% for question in questions %}
+        {% csrf_token %}
+        <h2>{{question.question}}</h2>
+        <img src="{{question.diagram.url}}" alt="diagram"/><br>
+        <input type="radio" name="{{question.id}}" value="{{question.option1}}">
+        <label for="{{question.option1}}">{{question.option1}}</label><br>
+        <input type="radio" name="{{question.id}}" value="{{question.option2}}">
+        <label for="{{question.option2}}">{{question.option2}}</label><br>
+        <input type="radio" name="{{question.id}}" value="{{question.option3}}">
+        <label for="{{question.option3}}">{{question.option3}}</label><br>
+        <input type="radio" name="{{question.id}}" value="{{question.option4}}">
+        <label for="{{question.option4}}">{{question.option4}}</label><br>
+
+        {% endfor %}
+
+        <input type="submit" value="Submit">
+      </form>
+
     </div>
 {% endblock %}

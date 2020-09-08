@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>So here is your result</h1>
+<h2><pre>{{response}}</pre></h2>
+<a href="{% url 'quiz:quiz_list' %}">Try another Quiz</a>
+{% endblock %}

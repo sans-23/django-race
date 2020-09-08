@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Question, Quiz
 
@@ -10,4 +10,11 @@ def quiz_list(request):
 
 def question_list(request, slug):
     questions = Question.objects.all()
-    return render(request, 'quiz/questions.html', {'questions': questions})
+    return render(request, 'quiz/questions.html', {'questions': questions, 'slug':slug})
+
+def result_page(request, slug):
+    if request.method == 'POST':
+        response = request.POST
+    else:
+        response = "Fuck! You haven't tried yet"
+    return render(request, 'quiz/result.html', {'response': response})
