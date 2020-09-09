@@ -3,6 +3,18 @@
 {% block content %}
 
 <h1>So here is your result</h1>
-<h2><pre>{{response}}</pre></h2>
+
+<h2><pre> Your Score  :
+               {{score}}</pre></h2>
+
+<ul>
+  {% for question in questions %}
+
+<li>{{question.id}} {{question.answer}}</li>
+
+  {% endfor %}
+
+</ul>
+
 <a href="{% url 'quiz:quiz_list' %}">Try another Quiz</a>
 {% endblock %}
