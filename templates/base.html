@@ -25,6 +25,8 @@
 
             </form>
           </li>
+          <li> <a href="{% url 'quiz:my_quiz' %}">My Quiz</a> </li>
+          <li><a href="{% url 'quiz:quiz_create' %}">Create a new quiz</a></li>
           {% else %}
           <li><a href="{% url 'accounts:login' %}">Login</a></li>
           <li><a href="{% url 'accounts:signup' %}">Signup</a></li>

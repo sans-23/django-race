@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Quizes created by you</h1>
+
+
+<ul>
+  {% for quiz in quizes %}
+
+<li ><a href="{% url 'quiz:question_create' slug=quiz.slug %}">{{quiz.title}}</a></li>
+
+  {% endfor %}
+
+</ul>
+
+<a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
+{% endblock %}

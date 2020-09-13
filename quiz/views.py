@@ -42,6 +42,10 @@ def result_page(request, slug):
     response = request.session['response']
     return render(request, 'quiz/result.html', {'questions': questions, 'score': score , 'response': response})
 
+def MyQuiz(request):
+    quizes = Quiz.objects.filter(author=request.user)
+    return render(request, 'quiz/myquiz.html', {'quizes': quizes})
+
 class QuizCreate(LoginRequiredMixin, CreateView):
     model = Quiz
     fields = ['title', 'slug']
@@ -53,8 +57,17 @@ class QuizCreate(LoginRequiredMixin, CreateView):
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
-    fields = '__all__'
+    fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
     success_url = reverse_lazy('quiz:quiz_list')
+    # slug = 'lorem-ipsum'
+    #
+    # quiz = Quiz.objects.filter(slug=slug)[0]
+
+    def form_valid(self, form):
+        slug = self.kwargs['slug']
+        quiz = Quiz.objects.filter(slug=slug)[0]
+        form.instance.quiz = quiz
+        return super().form_valid(form)
 
 
 class QuestionUpdate(LoginRequiredMixin, UpdateView):

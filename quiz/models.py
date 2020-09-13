@@ -12,7 +12,7 @@ class Quiz(models.Model):
         return self.title
 
 class Question(models.Model):
-    quiz = models.ManyToManyField(Quiz)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=True, null=True)
     question = models.TextField()
     option1 = models.CharField(max_length=200)
     option2 = models.CharField(max_length=200)
