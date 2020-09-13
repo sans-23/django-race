@@ -13,8 +13,13 @@ h1, h2, h3, h4{
   margin: 0;
 }
 
+h1{
+  color:#00dba0;
+}
+
 a, a:hover, a:visited{
   color: #fff;
+
   text-decoration: none;
 }
 
@@ -23,4 +28,94 @@ a, a:hover, a:visited{
   margin-right: 20%;
   margin-top:20px;
   margin-bottom:20px;
+  border: 1px solid #00dba0;
+  padding:30px;
+}
+
+.site-form{
+  margin-top:60px;
+  border: 1px solid #00dba0;
+  padding:20px;
+}
+
+.site-form input, .site-form textarea{
+  display:block;
+  margin: 20px 0 0 0;
+  padding: 5px;
+}
+
+.helptext, .helptext ul{
+  margin: 0 auto 20px;
+  color:#bbb;
+  font-size: 0.9em;
+  display:block;
+}
+
+.errorlist li{
+  padding: 10px;
+  list-style-type: none;
+  border: 1px solid #ff5722;
+  color:#ff5722;
+  margin:10px 0;
+}
+
+.errorlist{
+  padding:0;
+}
+
+.site-form input[type="submit"]{
+  background-color: #00dba0;
+  border:0;
+  color:#fff;
+  font-size:1.2em;
+  border-radius: 4px;
+  margin: 10px 0;
+
+}
+
+.wrapper{
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.wrapper form p label{
+  color:#00dba0;
+}
+
+.wrapper form p input{
+  border: 3px solid #00dba0;
+}
+
+.wrapper form p select{
+  border: 3px solid #00dba0;
+}
+
+.wrapper form p textarea{
+  border: 3px solid #00dba0;
+}
+
+
+div.wrapper h1{
+  text-align:center;
+  margin: 100px auto;
+}
+
+nav li{
+  display:inline-block;
+  margin-left:20px;
+}
+
+nav button{
+  background: #0f121f;
+  color:white;
+  cursor: pointer;
+}
+
+.quizes{
+  border: 1px solid #00dba0;
+  padding:30px;
+}
+
+.quiz h2 a{
+  color:yellow;
 }

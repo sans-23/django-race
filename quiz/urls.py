@@ -1,7 +1,8 @@
 from django.urls import path, re_path
-from . import views
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import TemplateView
+from . import views
 
 
 app_name = 'quiz'
@@ -12,6 +13,13 @@ urlpatterns = [
     #path('quiz/', views.question_list, name='quiz_name'),
     re_path(r'^result/(?P<slug>[\w-]+)/$', views.result_page, name='result'),
     re_path(r'^(?P<slug>[\w-]+)/$', views.question_list, name='question_list'),
+
+    path('lets/create/', views.QuizCreate.as_view(), name='quiz_create'),
+    
+    path('main/create/', views.QuestionCreate.as_view(), name='question_create'),
+    path('main/<int:pk>/update/', views.QuestionUpdate.as_view(), name='question_update'),
+    path('main/<int:pk>/delete/', views.QuestionDelete.as_view(), name='question_delete'),
+
 
     #path('<slug:slug>/', views.question_list),
 ]

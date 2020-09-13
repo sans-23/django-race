@@ -6,20 +6,20 @@ from django.contrib.auth.models import User
 class Quiz(models.Model):
     title = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100)
-    total_marks = models.IntegerField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
 class Question(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True,)
+    quiz = models.ManyToManyField(Quiz)
     question = models.TextField()
     option1 = models.CharField(max_length=200)
     option2 = models.CharField(max_length=200)
     option3 = models.CharField(max_length=200)
     option4 = models.CharField(max_length=200)
     answer = models.CharField(max_length=200)
-    diagram = models.ImageField(default='default.png', blank=True)
+    diagram = models.ImageField(blank=True)
     marks = models.IntegerField(default=0)
     negative = models.IntegerField(default=0)
 

@@ -11,5 +11,11 @@
       </div>
 
       {% endfor %}
+
+      <ul>
+        <li><a href="{% url 'quiz:question_create' %}">Create a new question</a></li>
+        <li><a href="{% url 'quiz:quiz_create' %}">Create a new quiz</a></li>
+      </ul>
+
     </div>
 {% endblock %}
