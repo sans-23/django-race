@@ -8,7 +8,8 @@
 <ul>
   {% for quiz in quizes %}
 
-<li ><a href="{% url 'quiz:question_create' slug=quiz.slug %}">{{quiz.title}}</a></li>
+<li ><a href="{% url 'quiz:question_list' slug=quiz.slug %}">{{quiz.title}}</a></li>
+<a href="{% url 'quiz:question_create' slug=quiz.slug %}">(Add question)</a>
 
   {% endfor %}
 

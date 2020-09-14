@@ -16,7 +16,14 @@ def quiz_list(request):
 
 @login_required(login_url='/accounts/login/')
 def question_list(request, slug):
-    quiz = Quiz.objects.filter(slug=str(slug))[0:1]
+    quiz = Quiz.objects.filter(slug=str(slug))[0]
+    questions = Question.objects.filter(quiz=quiz)
+    return render(request, 'quiz/questions.html', {'questions': questions, 'slug':slug, 'quiz':quiz})
+
+
+@login_required(login_url='/accounts/login/')
+def exam_view(request, slug):
+    quiz = Quiz.objects.filter(slug=str(slug))[0]
     questions = Question.objects.filter(quiz=quiz)
     if request.method == 'POST':
         #calculating marks
@@ -33,8 +40,9 @@ def question_list(request, slug):
         return redirect('quiz:result', slug=slug)
 
     else:
-        return render(request, 'quiz/questions.html', {'questions': questions, 'slug':slug})
+        return render(request, 'quiz/exam.html', {'questions': questions, 'slug':slug})
 
+@login_required(login_url='/accounts/login/')
 def result_page(request, slug):
     quiz = Quiz.objects.filter(slug=str(slug))[0:1]
     questions = Question.objects.filter(quiz=quiz)
@@ -42,6 +50,7 @@ def result_page(request, slug):
     response = request.session['response']
     return render(request, 'quiz/result.html', {'questions': questions, 'score': score , 'response': response})
 
+@login_required(login_url='/accounts/login/')
 def MyQuiz(request):
     quizes = Quiz.objects.filter(author=request.user)
     return render(request, 'quiz/myquiz.html', {'quizes': quizes})
@@ -59,9 +68,6 @@ class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
     fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
     success_url = reverse_lazy('quiz:quiz_list')
-    # slug = 'lorem-ipsum'
-    #
-    # quiz = Quiz.objects.filter(slug=slug)[0]
 
     def form_valid(self, form):
         slug = self.kwargs['slug']

@@ -6,7 +6,8 @@
       {% for quiz in quizes %}
       <div class="quiz">
 
-        <h2><a href="{% url 'quiz:question_list' slug=quiz.slug %}">{{quiz.title}}</a></h2>
+        <h2><a href="{% url 'quiz:exam' slug=quiz.slug %}">{{quiz.title}}</a></h2>
+        <span class="author">{{quiz.author}}</span>
 
       </div>
 

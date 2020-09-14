@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Questions</h1>
+<div class="questions">
+
+  <form action="{% url 'quiz:exam' slug=slug%}" method="post">
+
+    {% for question in questions %}
+    {% csrf_token %}
+
+    <div class="question">
+      <h2>{{question.question}}</h2>
+
+
+      {% if question.diagram %}
+
+      <img src="{{question.diagram.url}}" alt="diagram"/><br>
+      <p>{{question.diagram.url}}</p>
+      {% endif %}
+
+      <input type="radio" name="{{question.id}}" value="{{question.option1}}">
+      <label for="{{question.option1}}">{{question.option1}}</label><br>
+      <input type="radio" name="{{question.id}}" value="{{question.option2}}">
+      <label for="{{question.option2}}">{{question.option2}}</label><br>
+      <input type="radio" name="{{question.id}}" value="{{question.option3}}">
+      <label for="{{question.option3}}">{{question.option3}}</label><br>
+      <input type="radio" name="{{question.id}}" value="{{question.option4}}">
+      <label for="{{question.option4}}">{{question.option4}}</label><br>
+    </div>
+
+    {% endfor %}
+
+    <input type="submit" value="Submit">
+  </form>
+
+</div>
+
+{% endblock %}
