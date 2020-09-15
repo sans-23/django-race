@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if reports %}
+<h1>Leaderboard App</h1>
+
+{% for report in reports %}
+
+<table style="width:100%">
+  <caption>Reports</caption>
+  <tr>
+    <th>QUIZ</th>
+    <th>SCORE</th>
+  </tr>
+  <tr>
+    <td>{{report.quiz}}</td>
+    <td>{{report.score}}</td>
+  </tr>
+</table>
+
+{% endfor %}
+
+{% else %}
+
+<h1>You have not tried any quiz yet...</h1>
+<h2><a href="{% url 'quiz:quiz_list' %}">Try Here ...</a></h2>
+
+{% endif %}
+
+{% endblock %}

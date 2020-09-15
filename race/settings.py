@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'quiz',
     'accounts',
     'leaderboard',
+    'about',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Report Card</h1>
+
+{% for report in reports %}
+
+<table style="width:100%">
+  <caption>Reports</caption>
+  <tr>
+    <th>PARTICIPANT</th>
+    <th>SCORE</th>
+  </tr>
+  <tr>
+    <td>{{report.student}}</td>
+    <td>{{report.score}}</td>
+  </tr>
+</table>
+
+{% endfor %}
+
+<a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
+
+{% endblock %}

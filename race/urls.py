@@ -18,11 +18,14 @@ from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from quiz.views import quiz_list
 
 urlpatterns = [
+    path('', quiz_list),
     path('admin/', admin.site.urls),
     path('quiz/', include('quiz.urls')),
     path('accounts/', include('accounts.urls')),
+    path('about/', include('about.urls')),
     path('leaderboard/', include('leaderboard.urls')),
 ]
 

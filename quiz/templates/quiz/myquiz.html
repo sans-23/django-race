@@ -4,16 +4,20 @@
 
 <h1>Quizes created by you</h1>
 
-
-<ul>
+<table style="width:100%">
+  <tr>
+    <th>QUIZ</th>
+    <th>ADD QUESTION</th>
+    <th>RESULT</th>
+  </tr>
   {% for quiz in quizes %}
-
-<li ><a href="{% url 'quiz:question_list' slug=quiz.slug %}">{{quiz.title}}</a></li>
-<a href="{% url 'quiz:question_create' slug=quiz.slug %}">(Add question)</a>
-
+  <tr>
+    <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}">{{quiz.title}}</a></td>
+    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}">Add question</a></td>
+    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}">See Participants</a></td>
+  </tr>
   {% endfor %}
-
-</ul>
+</table>
 
 <a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
 {% endblock %}

@@ -15,12 +15,20 @@ h1, h2, h3, h4{
 
 h1{
   color:#00dba0;
+  font-family:cursive;
+  font-weight:bold;
+  font-size:3em;
 }
 
-a, a:hover, a:visited{
+a, a:visited{
   color: #fff;
 
   text-decoration: none;
+}
+
+a:hover{
+  color:#00dba0;
+  font-family:cursive;
 }
 
 .question{
@@ -100,9 +108,13 @@ div.wrapper h1{
   margin: 100px auto;
 }
 
+nav{
+  text-align:center;
+}
+
 nav li{
   display:inline-block;
-  margin-left:20px;
+  margin:12px;
 }
 
 nav button{
@@ -118,4 +130,29 @@ nav button{
 
 .quiz h2 a{
   color:yellow;
+  font-family:cursive;
+  font-weight:800;
+}
+
+.result-h{
+  color:yellow;
+  font-size:1.5em;
+  font-weight:bold;
+}
+
+.result{
+  font-size:2em;
+  font-weight:lighter;
+  font-family:cursive
+}
+
+table, th, td {
+  border: 4px ridge yellow;
+  border-radius: 10px;
+  border
+}
+
+th, td {
+  padding: 15px;
+  font-family: cursive;
 }

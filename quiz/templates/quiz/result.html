@@ -2,19 +2,15 @@
 
 {% block content %}
 
-<h1>So here is your result</h1>
+<h1>This is your report</h1>
 
-<h2><pre> Your Score  :
-               {{score}}</pre></h2>
+<p class="result-h">NAME</p>
+<p class="result">{{request.user}}</p>
+<p class="result-h">QUIZ</p>
+<p class="result">{{report.quiz}}</p>
+<p class="result-h">SCORE</p>
+<p class="result">{{report.score}}</p>
 
-<ul>
-  {% for question in questions %}
-
-<li>{{question.id}} {{question.answer}}</li>
-
-  {% endfor %}
-
-</ul>
 
 <a href="{% url 'quiz:quiz_list' %}">Try another Quiz</a>
 {% endblock %}

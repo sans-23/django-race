@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if questions %}
 <h1>Questions</h1>
 <div class="questions">
 
@@ -35,5 +36,11 @@
   </form>
 
 </div>
+
+{% else %}
+
+<h1>Ask Owner to add question</h1>
+
+{% endif %}
 
 {% endblock %}

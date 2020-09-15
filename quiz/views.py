@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Question, Quiz
+from .models import Question, Quiz, Report
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -34,9 +34,14 @@ def exam_view(request, slug):
                 score += question.marks
             else:
                 score += question.negative
+        try:
+            report = Report(quiz=quiz, student=request.user, score=score)
+            report.save()
+        except:
+            report = Report.objects.filter(quiz=quiz, student=request.user)[0]
+            report.score=score
+            report.save()
 
-        request.session['response'] = request.POST
-        request.session[slug] = score
         return redirect('quiz:result', slug=slug)
 
     else:
@@ -44,11 +49,9 @@ def exam_view(request, slug):
 
 @login_required(login_url='/accounts/login/')
 def result_page(request, slug):
-    quiz = Quiz.objects.filter(slug=str(slug))[0:1]
-    questions = Question.objects.filter(quiz=quiz)
-    score=request.session[slug]
-    response = request.session['response']
-    return render(request, 'quiz/result.html', {'questions': questions, 'score': score , 'response': response})
+    quiz = Quiz.objects.filter(slug=str(slug))[0]
+    report = Report.objects.filter(quiz=quiz, student=request.user)[0]
+    return render(request, 'quiz/result.html', {'report': report})
 
 @login_required(login_url='/accounts/login/')
 def MyQuiz(request):
@@ -58,7 +61,7 @@ def MyQuiz(request):
 class QuizCreate(LoginRequiredMixin, CreateView):
     model = Quiz
     fields = ['title', 'slug']
-    success_url = reverse_lazy('quiz:quiz_list')
+    success_url = reverse_lazy('quiz:my_quiz')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -67,7 +70,7 @@ class QuizCreate(LoginRequiredMixin, CreateView):
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
     fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
-    success_url = reverse_lazy('quiz:quiz_list')
+    success_url = reverse_lazy('quiz:my_quiz')
 
     def form_valid(self, form):
         slug = self.kwargs['slug']

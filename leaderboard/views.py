@@ -1,7 +1,13 @@
 from django.shortcuts import render
+from quiz.models import Quiz, Question, Report
 
 # Create your views here.
 
-def dummy(request):
-    ctx = 'Hola Brother'
-    return render(request, 'leaderboard/dum.html', {'ctx':ctx})
+def my_attempts(request):
+    reports = Report.objects.filter(student=request.user)
+    return render(request, 'leaderboard/attempts.html', {'reports':reports})
+
+def report_card(request, slug):
+    quiz = Quiz.objects.filter(slug=slug)[0]
+    reports = Report.objects.filter(quiz=quiz)
+    return render(request, 'leaderboard/reportcard.html', {'reports':reports})
