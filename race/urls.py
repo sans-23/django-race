@@ -23,6 +23,7 @@ from quiz.views import quiz_list
 urlpatterns = [
     path('', quiz_list),
     path('admin/', admin.site.urls),
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('quiz/', include('quiz.urls')),
     path('accounts/', include('accounts.urls')),
     path('about/', include('about.urls')),

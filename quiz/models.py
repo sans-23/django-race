@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 # Create your models here.
 
@@ -10,6 +11,10 @@ class Quiz(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['title']
+
 
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, blank=True, null=True)
@@ -26,6 +31,16 @@ class Question(models.Model):
     def __str__(self):
         return self.question
 
+class QuestionInline(admin.TabularInline):
+    model = Question
+
+class QuizAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'author')
+    search_fields = ('title', 'author')
+    inlines = [
+        QuestionInline,
+    ]
+
 class Report(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -33,9 +48,14 @@ class Report(models.Model):
 
     class Meta:
         unique_together = ('quiz', 'student',)
+        ordering = ['student']
 
     def __str__(self):
         return str(self.quiz) + ' - ' + str(self.student) + ' ' + str(self.score)
+
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ('quiz', 'student', 'score')
+    search_fields = ('quiz', 'student', 'score')
 
 # class GradeSheet(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
