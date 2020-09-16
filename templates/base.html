@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Homepage</title>
+    <title>SansQuiz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href={% static "quiz/styles.css" %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +15,11 @@
         <ul>
           {% if user.is_authenticated %}
           <li>
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> be189f9e52811306b3ae7b5271415c32d217aa4f
             <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
               {% csrf_token %}
               <button type="submit">Logout</button>
@@ -25,7 +29,11 @@
           <li> <a href="{% url 'quiz:my_quiz' %}"><i class="material-icons">folder_special</i> My Quiz</a> </li>
           <li><a href="{% url 'quiz:quiz_create' %}"><i class="material-icons">note_add</i> Create A New Quiz</a></li>
           <li><a href="{% url 'leaderboard:attempts' %}"><i class="material-icons">analytics</i> Analytics</a></li>
+<<<<<<< HEAD
           <li> <a href="{% url 'about:about_app' %}"><i class="material-icons">feedback</i> About Us </a> </li>
+=======
+          <li> <a href="{% url 'feedback:feed_back' %}"><i class="material-icons">feedback</i> FeedBack </a> </li>
+>>>>>>> be189f9e52811306b3ae7b5271415c32d217aa4f
           {% else %}
           <li><a href="{% url 'accounts:login' %}">Login</a></li>
           <li><a href="{% url 'accounts:signup' %}">Signup</a></li>

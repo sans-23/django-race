@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1><i class="material-icons md-72">anchor</i>About App</h1>
+
+<div class="about">
+  <p>
+    This web application is DJANGO based deployed on pythonanywhere platform. This webapp is solely created by Me - Sanskar Jain.
+    Its solely for fun and learning. You can use it to know how much others know about you by creating a friendship kinda quiz. Or a teacher can test thier students.
+  </p>
+
+  <p class="warning">WARNING :: This is not professional website so it may happen that your report data might be wiped out.
+   Don't depend on it for data security. Although I tried to maintain data integrity.
+    Also there is limit for daily usage set by pythonanywhere as I'm using its free hosting service.</p>
+
+   <p> If you can find any bug you can report it in feedback form below. Also I'm not too good at color selection,
+so if you can help me to make this site more pretty then it would be highly appreciated. If you are learning frontend then its playground for you.
+If you find this app useful or want to add more features both frontend or backend or found a bug <i class="fa fa-bug" style="font-size:48px;color:red"></i>____Please let me know through feedback form.</p>
+
+</div>
+
+<h1><i class="material-icons md-72">push_pin</i>FeedBack</h1>
+<form class="site-form" method="post">
+  {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send">
+    <input type="submit" onclick="window.location='{% url 'quiz:my_quiz' %}' ; return false;" value="Cancel">
+</form>
+
+{% endblock %}
