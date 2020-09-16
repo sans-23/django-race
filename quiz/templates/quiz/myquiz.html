@@ -2,11 +2,7 @@
 
 {% block content %}
 
-<<<<<<< HEAD
-<h1><i class="material-icons">create</i> Quizes created by you</h1>
-=======
 <h1><i class="material-icons md-72">create</i> Quizes created by you</h1>
->>>>>>> be189f9e52811306b3ae7b5271415c32d217aa4f
 
 <table style="width:100%">
   <tr>
@@ -16,15 +12,9 @@
   </tr>
   {% for quiz in quizes %}
   <tr>
-<<<<<<< HEAD
-    <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}"><i class="material-icons">assignment</i>{{quiz.title}}</a></td>
-    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons">add_box</i> <span>Add Questions</span> </a></td>
-    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons">people</i><span>See Participants</span></a></td>
-=======
     <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}"><i class="material-icons md-36">assignment</i>{{quiz.title}}</a></td>
     <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons md-36">add_box</i> <span>Add Questions</span> </a></td>
     <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons md-36">people</i><span>See Participants</span></a></td>
->>>>>>> be189f9e52811306b3ae7b5271415c32d217aa4f
   </tr>
   {% endfor %}
 </table>
