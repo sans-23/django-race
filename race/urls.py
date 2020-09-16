@@ -28,6 +28,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('about/', include('about.urls')),
     path('leaderboard/', include('leaderboard.urls')),
+    path('feedback/', include('feedback.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

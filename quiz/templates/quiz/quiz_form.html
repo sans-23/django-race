@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Add a quiz to my quiz</h1>
+<h1><i class="material-icons md-72">add_chart</i>Add a quiz to my quiz</h1>
 <form class="site-form" method="post">
   {% csrf_token %}
     {{ form.as_p }}
