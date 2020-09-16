@@ -11,7 +11,7 @@
     {% csrf_token %}
 
     <div class="question">
-      <h2>{{question.question}}</h2>
+      <h2><i class="material-icons">help</i> {{question.question}}</h2>
 
 
       {% if question.diagram %}
@@ -19,15 +19,26 @@
       <img src="{{question.diagram.url}}" alt="diagram"/><br>
       <p>{{question.diagram.url}}</p>
       {% endif %}
+      <label>
+            <input type="radio" name="{{question.id}}" value="{{question.option1}}">
+            <span>{{question.option1}}</span>
+      </label><br>
 
-      <input type="radio" name="{{question.id}}" value="{{question.option1}}">
-      <label for="{{question.option1}}">{{question.option1}}</label><br>
-      <input type="radio" name="{{question.id}}" value="{{question.option2}}">
-      <label for="{{question.option2}}">{{question.option2}}</label><br>
-      <input type="radio" name="{{question.id}}" value="{{question.option3}}">
-      <label for="{{question.option3}}">{{question.option3}}</label><br>
-      <input type="radio" name="{{question.id}}" value="{{question.option4}}">
-      <label for="{{question.option4}}">{{question.option4}}</label><br>
+      <label>
+            <input type="radio" name="{{question.id}}" value="{{question.option2}}">
+            <span>{{question.option2}}</span>
+      </label><br>
+
+      <label>
+            <input type="radio" name="{{question.id}}" value="{{question.option3}}">
+            <span>{{question.option3}}</span>
+      </label><br>
+
+      <label>
+            <input type="radio" name="{{question.id}}" value="{{question.option4}}">
+            <span>{{question.option4}}</span>
+      </label><br>
+
     </div>
 
     {% endfor %}

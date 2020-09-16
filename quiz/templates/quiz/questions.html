@@ -12,10 +12,10 @@
         {% csrf_token %}
 
         <div class="question">
-          <h2>{{question.question}}</h2>
+          <h2><i class="material-icons">help</i>{{question.question}}</h2>
 
-          <h3>(<a href="{% url 'quiz:question_update' question.id %}">Update</a> |
-            <a href="{% url 'quiz:question_delete' question.id %}">Delete</a>)</h3>
+          <h3><a href="{% url 'quiz:question_update' question.id %}"><i class="material-icons">create</i>Edit</a> |
+            <a href="{% url 'quiz:question_delete' question.id %}"><i class="material-icons">delete</i>Delete</a></h3>
           {% if question.diagram %}
 
           <img src="{{question.diagram.url}}" alt="diagram"/><br>

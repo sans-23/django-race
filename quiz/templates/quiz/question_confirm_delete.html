@@ -4,9 +4,9 @@
 
 <h1>Delete Question</h1>
 
-<p>Are you sure you want to delete the question: {{ question }}?</p>
+<h1>Are you sure you want to delete the question: {{ question }}?</h1>
 
-<form action="" method="POST">
+<form class="site-form" action="" method="POST">
   {% csrf_token %}
   <input type="submit" value="Yes, delete.">
 </form>

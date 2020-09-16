@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if reports %}
-<h1>Leaderboard App</h1>
+<h1>Analytics</h1>
 
 {% for report in reports %}
 
@@ -14,7 +14,7 @@
     <th>SCORE</th>
   </tr>
   <tr>
-    <td>{{report.quiz}}</td>
+    <td><i class="material-icons">assignment</i>{{report.quiz}}</td>
     <td>{{report.score}}</td>
   </tr>
 </table>

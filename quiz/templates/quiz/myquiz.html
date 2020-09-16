@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Quizes created by you</h1>
+<h1><i class="material-icons">create</i> Quizes created by you</h1>
 
 <table style="width:100%">
   <tr>
@@ -12,9 +12,9 @@
   </tr>
   {% for quiz in quizes %}
   <tr>
-    <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}">{{quiz.title}}</a></td>
-    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}">Add question</a></td>
-    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}">See Participants</a></td>
+    <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}"><i class="material-icons">assignment</i>{{quiz.title}}</a></td>
+    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons">add_box</i> <span>Add Questions</span> </a></td>
+    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons">people</i><span>See Participants</span></a></td>
   </tr>
   {% endfor %}
 </table>

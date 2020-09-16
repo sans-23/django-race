@@ -72,6 +72,13 @@ class QuestionCreate(LoginRequiredMixin, CreateView):
     fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
     success_url = reverse_lazy('quiz:my_quiz')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs['slug']
+        quiz = Quiz.objects.filter(slug=slug)[0]
+        context["quiz"] = quiz
+        return context
+
     def form_valid(self, form):
         slug = self.kwargs['slug']
         quiz = Quiz.objects.filter(slug=slug)[0]
@@ -81,8 +88,10 @@ class QuestionCreate(LoginRequiredMixin, CreateView):
 
 class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
-    fields = '__all__'
+    fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
     success_url = reverse_lazy('quiz:quiz_list')
+
+    template_name_suffix= '_update_form'
 
 
 class QuestionDelete(LoginRequiredMixin, DeleteView):
