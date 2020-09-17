@@ -39,22 +39,18 @@ def exam_view(request, slug):
             if( request.POST.get(id) == question.answer):
                 score += question.marks
                 try:
-                    response = Response(quiz=quiz, student=request.user, question=question, is_correct=True, answer=question.answer)
+                    response = Response(quiz=quiz, student=request.user, question=question, is_correct=True, answer=request.POST.get(id))
                     response.save()
                 except:
                     response = Response.objects.filter(quiz=quiz, question=question, student=request.user)[0]
-                    response.is_correct=True
-                    response.answer=question.answer
                     response.save()
             else:
                 score += question.negative
                 try:
-                    response = Response(quiz=quiz, student=request.user, question=question, is_correct=False, answer=question.answer)
+                    response = Response(quiz=quiz, student=request.user, question=question, is_correct=False, answer=request.POST.get(id))
                     response.save()
                 except:
                     response = Response.objects.filter(quiz=quiz, question=question, student=request.user)[0]
-                    response.is_correct=False
-                    response.answer=question.answer
                     response.save()
         try:
             report = Report(quiz=quiz, student=request.user, score=score)
