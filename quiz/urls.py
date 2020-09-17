@@ -11,6 +11,9 @@ urlpatterns = [
     path('lets/create/', views.QuizCreate.as_view(), name='quiz_create'),#safe
     path('myquiz/', views.MyQuiz, name='my_quiz'),#safe
 
+    re_path(r'^records/(?P<slug>[\w-]+)/$', views.response_page, name='responses'),
+
+
     re_path(r'^question/(?P<slug>[\w-]+)/create/$', views.QuestionCreate.as_view(), name='question_create'),
     path('question/<int:pk>/update/', views.QuestionUpdate.as_view(), name='question_update'),#safe
     path('question/<int:pk>/delete/', views.QuestionDelete.as_view(), name='question_delete'),#safe

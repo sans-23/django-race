@@ -11,14 +11,8 @@
     {% csrf_token %}
 
     <div class="question">
-      <h2><i class="material-icons md-36">help</i> {{question.question}}</h2>
+      <h2><i class="material-icons md-36">help</i> {{question.question}}  ({{question.marks }} , {{question.negative}})</h2>
 
-
-      {% if question.diagram %}
-
-      <img src="{{question.diagram.url}}" alt="diagram"/><br>
-      <p>{{question.diagram.url}}</p>
-      {% endif %}
       <label>
             <input type="radio" name="{{question.id}}" value="{{question.option1}}">
             <span>{{question.option1}}</span>

@@ -3,21 +3,21 @@
 {% block content %}
 <h1>Report Card</h1>
 
-{% for report in reports %}
-
 <table style="width:100%">
   <caption>Reports</caption>
   <tr>
     <th>PARTICIPANT</th>
     <th>SCORE</th>
+    <th>RESPONSE</th>
   </tr>
+  {% for report in reports %}
   <tr>
-    <td><i class="material-icons">person</i>{{report.student}}</td>
+    <td><i class="material-icons">person</i>{{report.student}} - {{report.attempt}}</td>
     <td>{{report.score}}</td>
+    <td><a href="{% url 'quiz:responses' slug=slug %}">Response </a></td>
   </tr>
+  {% endfor %}
 </table>
-
-{% endfor %}
 
 <a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
 

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Responses</h1>
+
+<table style="width:100%">
+  <caption>Response-sheet</caption>
+  <tr>
+    <th>QUESTION</th>
+    <th>RESPONSE</th>
+    <th>STATUS</th>
+  </tr>
+  {% for res in response %}
+  <tr>
+    <td><i class="material-icons">help</i>{{res.question}}</td>
+    <td>{{res.answer}}</td>
+    {% if res.is_correct %}
+    <td>Correct</td>
+    {% else %}
+    <td>Incorrect</td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
+
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Question, Quiz, Report
+from .models import Question, Quiz, Report, Response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -20,6 +20,12 @@ def question_list(request, slug):
     questions = Question.objects.filter(quiz=quiz)
     return render(request, 'quiz/questions.html', {'questions': questions, 'slug':slug, 'quiz':quiz})
 
+@login_required(login_url='/accounts/login/')
+def response_page(request, slug):
+    quiz = Quiz.objects.filter(slug=slug)[0]
+    response = Response.objects.filter(quiz=quiz, student=request.user)
+    return render(request, 'quiz/records.html', {'response' : response})
+
 
 @login_required(login_url='/accounts/login/')
 def exam_view(request, slug):
@@ -32,14 +38,31 @@ def exam_view(request, slug):
             id = str(question.id)
             if( request.POST.get(id) == question.answer):
                 score += question.marks
+                try:
+                    response = Response(quiz=quiz, student=request.user, question=question, is_correct=True, answer=question.answer)
+                    response.save()
+                except:
+                    response = Response.objects.filter(quiz=quiz, question=question, student=request.user)[0]
+                    response.is_correct=True
+                    response.answer=question.answer
+                    response.save()
             else:
                 score += question.negative
+                try:
+                    response = Response(quiz=quiz, student=request.user, question=question, is_correct=False, answer=question.answer)
+                    response.save()
+                except:
+                    response = Response.objects.filter(quiz=quiz, question=question, student=request.user)[0]
+                    response.is_correct=False
+                    response.answer=question.answer
+                    response.save()
         try:
             report = Report(quiz=quiz, student=request.user, score=score)
             report.save()
         except:
             report = Report.objects.filter(quiz=quiz, student=request.user)[0]
             report.score=score
+            report.attempt+=1
             report.save()
 
         return redirect('quiz:result', slug=slug)
@@ -69,7 +92,7 @@ class QuizCreate(LoginRequiredMixin, CreateView):
 
 class QuestionCreate(LoginRequiredMixin, CreateView):
     model = Question
-    fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
+    fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'marks', 'negative']
     success_url = reverse_lazy('quiz:my_quiz')
 
     def get_context_data(self, **kwargs):
@@ -88,7 +111,7 @@ class QuestionCreate(LoginRequiredMixin, CreateView):
 
 class QuestionUpdate(LoginRequiredMixin, UpdateView):
     model = Question
-    fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'diagram', 'marks', 'negative']
+    fields = ['question', 'option1', 'option2', 'option3', 'option4', 'answer', 'marks', 'negative']
     success_url = reverse_lazy('quiz:quiz_list')
 
     template_name_suffix= '_update_form'

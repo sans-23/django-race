@@ -24,7 +24,6 @@ class Question(models.Model):
     option3 = models.CharField(max_length=200)
     option4 = models.CharField(max_length=200)
     answer = models.CharField(max_length=200)
-    diagram = models.ImageField(blank=True)
     marks = models.IntegerField(default=0)
     negative = models.IntegerField(default=0)
 
@@ -51,6 +50,7 @@ class Report(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
+    attempt = models.IntegerField(default=1)
 
     class Meta:
         unique_together = ('quiz', 'student',)
@@ -62,6 +62,22 @@ class Report(models.Model):
 class ReportAdmin(admin.ModelAdmin):
     list_display = ('quiz', 'student', 'score')
     search_fields = ('quiz', 'student', 'score')
+
+class Response(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer = models.CharField(max_length=200)
+    time = models.DateTimeField(auto_now=True)
+    is_correct = models.BooleanField()
+
+    class Meta:
+        unique_together = ('quiz', 'student', 'question')
+        ordering = ['-time']
+
+class ResponseAdmin(admin.ModelAdmin):
+    list_display = ('quiz', 'student', 'answer')
+    search_fields = ('quiz', 'student')
 
 # class GradeSheet(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)

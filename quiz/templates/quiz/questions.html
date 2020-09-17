@@ -16,11 +16,6 @@
 
           <h3><a href="{% url 'quiz:question_update' question.id %}"><i class="material-icons">create</i>Edit</a> |
             <a href="{% url 'quiz:question_delete' question.id %}"><i class="material-icons">delete</i>Delete</a></h3>
-          {% if question.diagram %}
-
-          <img src="{{question.diagram.url}}" alt="diagram"/><br>
-          <p>{{question.diagram.url}}</p>
-          {% endif %}
 
           <input type="radio" name="{{question.id}}" value="{{question.option1}}">
           <label for="{{question.option1}}">{{question.option1}}</label><br>
