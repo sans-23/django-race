@@ -145,16 +145,28 @@ div.wrapper h1{
 }
 
 nav{
-  text-align:center;
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
 }
 
-nav li{
-  display:inline-block;
-  margin:12px;
-  font-size:1.5em;
+nav a{
+  float: left;
+  text-align: center;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
 }
 
-nav button{
+@media screen and (max-width: 500px) {
+  .nav a {
+    float: none;
+    display: block;
+  }
+}
+
+button{
   background: #0f121f;
   color:white;
   cursor: pointer;
@@ -163,13 +175,13 @@ nav button{
 .quizes{
   border: 4px ridge #00dba0;
   border-radius:14px;
-  padding:30px 80px;
+  padding:20px 0;
   height: 390px;
   overflow: scroll;
 }
 
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {

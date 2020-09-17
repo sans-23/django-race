@@ -11,28 +11,24 @@
   </head>
   <body>
     <header class="wrapper">
-      <nav>
-        <ul>
           {% if user.is_authenticated %}
-          <li>
 
             <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
               {% csrf_token %}
               <button type="submit">Logout</button>
 
             </form>
-          </li>
-          <li> <a href="{% url 'quiz:my_quiz' %}"><i class="material-icons">folder_special</i> My Quiz</a> </li>
-          <li><a href="{% url 'quiz:quiz_create' %}"><i class="material-icons">note_add</i> Create A New Quiz</a></li>
-          <li><a href="{% url 'leaderboard:attempts' %}"><i class="material-icons">analytics</i> Analytics</a></li>
-          <li> <a href="{% url 'feedback:feed_back' %}"><i class="material-icons">feedback</i> FeedBack </a> </li>
+    <nav>
+          <a href="{% url 'quiz:my_quiz' %}"><i class="material-icons">folder_special</i> My Quiz</a>
+          <a href="{% url 'quiz:quiz_create' %}"><i class="material-icons">note_add</i> Create A New Quiz</a>
+          <a href="{% url 'leaderboard:attempts' %}"><i class="material-icons">analytics</i> Analytics</a>
+          <a href="{% url 'feedback:feed_back' %}"><i class="material-icons">feedback</i> FeedBack </a>
           {% else %}
-          <li><a href="{% url 'accounts:login' %}">Login</a></li>
-          <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
-
+    <nav>
+          <a href="{% url 'accounts:login' %}">Login</a>
+          <a href="{% url 'accounts:signup' %}">Signup</a>
+    </nav>
           {% endif %}
-        </ul>
-      </nav>
     </header>
 
     <div class="wrapper">
