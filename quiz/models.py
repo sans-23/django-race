@@ -30,12 +30,6 @@ class Question(models.Model):
     def __str__(self):
         return self.question
 
-    def add_question(self, question):
-        if self.question_set.count() >= 1:
-            raise Exception("You have reached maximum limit on questions in a quiz")
-
-        self.question_set.add(question)
-
 class QuestionInline(admin.TabularInline):
     model = Question
 
@@ -70,9 +64,10 @@ class Response(models.Model):
     answer = models.CharField(max_length=200)
     time = models.DateTimeField(auto_now=True)
     is_correct = models.BooleanField()
+    attempt = models.IntegerField(default=1)
 
     class Meta:
-        unique_together = ('quiz', 'student', 'question')
+        unique_together = ('quiz', 'student', 'question', 'attempt')
         ordering = ['-time']
 
 class ResponseAdmin(admin.ModelAdmin):

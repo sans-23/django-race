@@ -14,7 +14,7 @@
   <tr>
     <td><i class="material-icons">person</i>{{report.student}} - {{report.attempt}}</td>
     <td>{{report.score}}</td>
-    <td><a href="{% url 'quiz:responses' slug=slug %}">Response </a></td>
+    <td><a href="{% url 'quiz:responses' slug=slug userid=report.student.id %}">Response </a></td>
   </tr>
   {% endfor %}
 </table>

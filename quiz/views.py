@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import View
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -21,9 +22,10 @@ def question_list(request, slug):
     return render(request, 'quiz/questions.html', {'questions': questions, 'slug':slug, 'quiz':quiz})
 
 @login_required(login_url='/accounts/login/')
-def response_page(request, slug):
+def response_page(request, slug, userid):
     quiz = Quiz.objects.filter(slug=slug)[0]
-    response = Response.objects.filter(quiz=quiz, student=request.user)
+    user = User.objects.filter(id=userid)[0]
+    response = Response.objects.filter(quiz=quiz, student=user)
     return render(request, 'quiz/records.html', {'response' : response})
 
 
@@ -43,7 +45,9 @@ def exam_view(request, slug):
                     response.save()
                 except:
                     response = Response.objects.filter(quiz=quiz, question=question, student=request.user)[0]
-                    response.save()
+                    attempt = response.attempt + 1
+                    response_another = Response(quiz=quiz, student=request.user, question=question, is_correct=True, answer=request.POST.get(id), attempt=attempt)
+                    response_another.save()
             else:
                 score += question.negative
                 try:
@@ -51,7 +55,9 @@ def exam_view(request, slug):
                     response.save()
                 except:
                     response = Response.objects.filter(quiz=quiz, question=question, student=request.user)[0]
-                    response.save()
+                    attempt = response.attempt + 1
+                    response_another = Response(quiz=quiz, student=request.user, question=question, is_correct=False, answer=request.POST.get(id), attempt=attempt)
+                    response_another.save()
         try:
             report = Report(quiz=quiz, student=request.user, score=score)
             report.save()

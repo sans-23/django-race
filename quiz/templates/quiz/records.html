@@ -15,9 +15,9 @@
     <td><i class="material-icons">help</i>{{res.question}}</td>
     <td>{{res.answer}}</td>
     {% if res.is_correct %}
-    <td>Correct</td>
+    <td>Correct - {{res.attempt}}</td>
     {% else %}
-    <td>Incorrect</td>
+    <td>Incorrect - {{res.attempt}}</td>
     {% endif %}
   </tr>
   {% endfor %}
