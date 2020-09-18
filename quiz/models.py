@@ -48,7 +48,7 @@ class Report(models.Model):
 
     class Meta:
         unique_together = ('quiz', 'student',)
-        ordering = ['student']
+        ordering = ['-score', 'student']
 
     def __str__(self):
         return str(self.quiz) + ' - ' + str(self.student) + ' ' + str(self.score)

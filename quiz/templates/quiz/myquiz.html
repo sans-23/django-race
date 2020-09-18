@@ -13,12 +13,12 @@
   {% for quiz in quizes %}
   <tr>
     <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}"><i class="material-icons md-36">assignment</i>{{quiz.title}} ({{quiz.question_set.count}})</a></td>
-    {% if quiz.question_set.count < 2 %}
-    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons md-36">add_box</i> <span>Add Questions</span> </a></td>
+    {% if quiz.question_set.count < 10 %}
+    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons md-36">add_box</i> <span>Add Question</span> </a></td>
     {% else %}
     <td><i class="material-icons md-36">policy</i> <span>MAX QUES LIMIT</span></td>
     {% endif %}
-    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons md-36">people</i><span>See Participants</span></a></td>
+    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons md-36">people</i><span>See Participants({{quiz.report_set.count}})</span></a></td>
   </tr>
   {% endfor %}
 </table>
