@@ -3,6 +3,8 @@
 {% block content %}
 <h1>Responses</h1>
 
+{% if request.user.profile.is_pro %}
+
 <table style="width:100%">
   <caption>Response-sheet</caption>
   <tr>
@@ -15,13 +17,20 @@
     <td><i class="material-icons">help</i>{{res.question}}</td>
     <td>{{res.answer}}</td>
     {% if res.is_correct %}
-    <td>Correct - {{res.attempt}}</td>
+    <td>Correct => {{res.attempt}}</td>
     {% else %}
-    <td>Incorrect - {{res.attempt}}</td>
+    <td>Incorrect => {{res.attempt}}</td>
     {% endif %}
   </tr>
   {% endfor %}
 </table>
+
+{% else %}
+
+<h1>You are not pro user...</h1>
+<h2 class="warning">Send your request in feedback section and get responses of your participants. Hurry up!</h2>
+
+{% endif %}
 
 <a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
 

@@ -139,8 +139,11 @@ div.wrapper h1{
   margin: 60px auto;
 }
 
-.quiz li{
-  display:inline-block;
+.quiz{
+  display: block;
+  padding:10px;
+  margin-left:10%;
+  margin-right:10%;
 }
 
 nav{
