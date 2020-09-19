@@ -3,14 +3,13 @@
 {% block content %}
 
 {% if request.user == quiz.author %}
-<h1>Adding question to the {{quiz}}</h1>
-  <form class="site-form" action="" method="post">
+  <form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" action="" method="post">
+    <h2 class="w3-padding-32 w3-text-blue w3-white w3-text-blue w3-circle w3-center">Adding question to the {{quiz}}</h2>
+    <hr>
     {% csrf_token %}
-    <table>
     {{ form.as_p }}
-    </table>
-    <input type="submit" value="Submit">
-    <input type="submit" onclick="window.location='{% url 'quiz:quiz_list' %}' ; return false;" value="Cancel">
+    <input class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" value="Submit">
+    <input class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" onclick="window.location='{% url 'quiz:my_quiz' %}' ; return false;" value="Cancel">
   </form>
 
 {% else %}

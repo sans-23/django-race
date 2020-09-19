@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<h1><i class="material-icons md-72">anchor</i>About App</h1>
+<h1 class="w3-padding-32 w3-white w3-text-blue w3-circle w3-center" style="font-family:cursive"><i class="material-icons md-72">anchor</i>About App</h1>
 
-<div class="about">
+<div class="w3-panel w3-border w3-light-grey w3-round-large">
   <p>
     This web application is DJANGO based deployed on pythonanywhere platform. This webapp is solely created by Me - Sanskar Jain.
     Its solely for fun and learning. You can use it to know how much others know about you by creating a friendship kinda quiz. Or a teacher can test thier students.
   </p>
 
-  <p class="warning">WARNING :: This is not professional website so it may happen that your report data might be wiped out.
+  <p class="w3-panel w3-pale-red w3-leftbar w3-border-red">WARNING :: This is not professional website so it may happen that your report data might be wiped out.
    Don't depend on it for data security. Although I tried to maintain data integrity.
     Also there is limit for daily usage set by pythonanywhere as I'm using its free hosting service.</p>
 
@@ -20,12 +20,13 @@ If you find this app useful or want to add more features both frontend or backen
 
 </div>
 
-<h1><i class="material-icons md-72">push_pin</i>FeedBack</h1>
-<form class="site-form" method="post">
+<h1 class="w3-padding-32 w3-white w3-text-blue w3-circle w3-center" style="font-family:cursive"><i class="material-icons md-72">push_pin</i>FeedBack</h1>
+<form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" method="post">
   {% csrf_token %}
+
     {{ form.as_p }}
-    <input type="submit" value="Send">
-    <input type="submit" onclick="window.location='{% url 'quiz:my_quiz' %}' ; return false;" value="Cancel">
+    <input class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" value="Send">
+    <input class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" onclick="window.location='{% url 'quiz:my_quiz' %}' ; return false;" value="Cancel">
 </form>
 
 {% endblock %}

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Report Card</h1>
+<h1 class="w3-padding-32 w3-white w3-circle w3-text-blue w3-center" style="font-family:cursive">Report Card</h1>
 
-<table style="width:100%">
-  <caption>Reports</caption>
+<div class="w3-container">
+<table class="w3-table-all w3-card-4 w3-text-blue" style="color:black">
+  <caption class="w3-card w3-centre w3-white">Reports</caption>
   <tr>
     <th>PARTICIPANT</th>
     <th>SCORE</th>
@@ -12,12 +13,13 @@
   </tr>
   {% for report in reports %}
   <tr>
-    <td><i class="material-icons">person</i>{{report.student}} - {{report.attempt}}</td>
-    <td>{{report.score}}</td>
-    <td><a href="{% url 'quiz:responses' slug=slug userid=report.student.id %}">Response </a></td>
+    <td style="color:black"><i class="material-icons">person</i>{{report.student}} <span class="w3-badge w3-green">{{report.attempt}}</span></td>
+    <td style="color:black">{{report.score}}</td>
+    <td><a style="color:black" href="{% url 'quiz:responses' slug=slug userid=report.student.id %}">Response </a></td>
   </tr>
   {% endfor %}
 </table>
+</div>
 
 <a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
 

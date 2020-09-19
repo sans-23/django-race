@@ -2,7 +2,7 @@
 {% block content %}
 
 {% if questions %}
-<h1>Questions</h1>
+<h1 class="w3-padding-32 w3-white w3-circle w3-center" style="font-family:cursive">Questions</h1>
 <div class="questions">
 
   <form action="{% url 'quiz:exam' slug=slug%}" method="post">
@@ -10,42 +10,46 @@
     {% for question in questions %}
     {% csrf_token %}
 
-    <div class="question">
-      <h2><i class="material-icons md-36">help</i> {{question.question}}  ({{question.marks }} , {{question.negative}})</h2>
+    <div class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+      <h2 class="w3-container w3-teal"><i class="material-icons md-36">help</i> {{question.question}}</h2>
+      <span class="w3-badge w3-blue">{{question.marks }}</span><span class="w3-badge w3-red">{{question.negative}}</span>
+<div class="w3-container w3-white">
+  <label>
+        <input type="radio" name="{{question.id}}" value="{{question.option1}}" required>
+        <span>{{question.option1}}</span>
+  </label><br>
 
-      <label>
-            <input type="radio" name="{{question.id}}" value="{{question.option1}}">
-            <span>{{question.option1}}</span>
-      </label><br>
+  <label>
+        <input type="radio" name="{{question.id}}" value="{{question.option2}}">
+        <span>{{question.option2}}</span>
+  </label><br>
 
-      <label>
-            <input type="radio" name="{{question.id}}" value="{{question.option2}}">
-            <span>{{question.option2}}</span>
-      </label><br>
+  <label>
+        <input type="radio" name="{{question.id}}" value="{{question.option3}}">
+        <span>{{question.option3}}</span>
+  </label><br>
 
-      <label>
-            <input type="radio" name="{{question.id}}" value="{{question.option3}}">
-            <span>{{question.option3}}</span>
-      </label><br>
+  <label>
+        <input type="radio" name="{{question.id}}" value="{{question.option4}}">
+        <span>{{question.option4}}</span>
+  </label><br>
+</div>
+<br>
 
-      <label>
-            <input type="radio" name="{{question.id}}" value="{{question.option4}}">
-            <span>{{question.option4}}</span>
-      </label><br>
 
     </div>
 
     {% endfor %}
 
-    <input type="submit" value="Submit">
+    <input class="w3-button w3-block w3-section w3-teal w3-ripple w3-padding" type="submit" value="Submit">
   </form>
 
 </div>
 
 {% else %}
 
-<h1><i class="material-icons md-72">build</i>
-Ask Owner to add question</h1>
+<h1 class="w3-panel w3-leftbar w3-white w3-text-red"><i class="material-icons md-72">build</i>
+Ask Examiner to set question</h1>
 
 
 

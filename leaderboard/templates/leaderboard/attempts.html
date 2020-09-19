@@ -3,23 +3,25 @@
 {% block content %}
 
 {% if reports %}
-<h1>Analytics</h1>
+<h1 class="w3-padding-32 w3-white w3-circle w3-text-blue w3-center" style="font-family:cursive">Analytics</h1>
 
-{% for report in reports %}
+<div class="w3-container">
 
-<table style="width:100%">
-  <caption>Reports</caption>
+<table class="w3-table-all w3-card-4 w3-text-blue" style="color:black">
+  <caption class="w3-card w3-centre w3-white">Reports</caption>
   <tr>
     <th>QUIZ</th>
     <th>SCORE</th>
   </tr>
+  {% for report in reports %}
   <tr>
-    <td><i class="material-icons">assignment</i>{{report.quiz}}</td>
-    <td>{{report.score}}</td>
+    <td style="color:brown"><i class="material-icons">assignment</i>{{report.quiz}}</td>
+    <td style="color:black">{{report.score}}</td>
   </tr>
+  {% endfor %}
 </table>
 
-{% endfor %}
+</div>
 
 {% else %}
 

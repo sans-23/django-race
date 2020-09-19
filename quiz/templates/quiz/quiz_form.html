@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1><i class="material-icons md-72">add_chart</i>Add a quiz to my quiz</h1>
-<form class="site-form" method="post">
+<h1 class="w3-padding-32 w3-white w3-text-blue w3-circle w3-center"><i class="material-icons md-72">add_chart</i>Create A Quiz</h1>
+<form class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" method="post">
+
+  <h2 class="w3-center">Add</h2>
   {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Save">
-    <input type="submit" onclick="window.location='{% url 'quiz:my_quiz' %}' ; return false;" value="Cancel">
+    <input class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" value="Save">
+    <input class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" type="submit" onclick="window.location='{% url 'quiz:my_quiz' %}' ; return false;" value="Cancel">
 </form>
+
+<script type="text/javascript">
+
+  const titleInput = document.querySelector('input[name=title]');
+  const slugInput = document.querySelector('input[name=slug]');
+
+  const slugify = (val)=>{
+    return val.toString().toLowerCase().trim().replace(/&/g, '-and-').replace(/[\s\W-]+/g, '-')
+  }
+
+  titleInput.addEventListener('keyup', (e)=>{
+    slugInput.setAttribute('value', slugify(titleInput.value));
+  })
+
+</script>
 
 {% endblock %}

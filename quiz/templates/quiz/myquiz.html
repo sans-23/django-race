@@ -2,26 +2,30 @@
 
 {% block content %}
 
-<h1><i class="material-icons md-72">create</i> Quizes created by you</h1>
+<h1 class="w3-padding-32 w3-white w3-circle w3-text-blue w3-center" style="font-family:cursive"><i class="material-icons md-72">create</i> Quizes created by you</h1>
 
-<table style="width:100%">
-  <tr>
-    <th>QUIZ</th>
-    <th>ADD QUESTION</th>
-    <th>RESULT</th>
-  </tr>
-  {% for quiz in quizes %}
-  <tr>
-    <td><a href="{% url 'quiz:question_list' slug=quiz.slug %}"><i class="material-icons md-36">assignment</i>{{quiz.title}} ({{quiz.question_set.count}})</a></td>
-    {% if quiz.question_set.count > 10 and request.user.profile.is_pro == False %}
-    <td><i class="material-icons md-36">policy</i> <span>MAX QUES LIMIT</span></td>
-    {% else %}
-    <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons md-36">add_box</i> <span>Add Question</span> </a></td>
-    {% endif %}
-    <td><a href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons md-36">people</i><span>See Participants({{quiz.report_set.count}})</span></a></td>
-  </tr>
-  {% endfor %}
-</table>
+
+<div class="w3-container">
+
+  <table class="w3-table-all w3-card-4 w3-text-blue" style="color:black">
+    <tr>
+      <th style="color:brown">QUIZ</th>
+      <th style="w3-blue">ADD QUESTION</th>
+      <th style="color:teal">RESULT</th>
+    </tr>
+    {% for quiz in quizes %}
+    <tr>
+      <td><a style="color:brown" href="{% url 'quiz:question_list' slug=quiz.slug %}"><i class="material-icons md-36">assignment</i>{{quiz.title}} </a></td>
+      {% if quiz.question_set.count > 10 and request.user.profile.is_pro == False %}
+      <td style="color:red"><i class="material-icons md-36">policy</i> <span>MAX QUES LIMIT</span></td>
+      {% else %}
+      <td><a href="{% url 'quiz:question_create' slug=quiz.slug %}"><i class="material-icons md-36">add_box</i>Add Question <span class="w3-badge">{{quiz.question_set.count}}</span></a></td>
+      {% endif %}
+      <td><a style="color:teal" href="{% url 'leaderboard:reportcard' slug=quiz.slug%}"><i class="material-icons md-36">people</i>See Participants <span class="w3-badge">{{quiz.report_set.count}}</span></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 
 <a href="{% url 'quiz:quiz_list' %}">Back to main page</a>
 {% endblock %}

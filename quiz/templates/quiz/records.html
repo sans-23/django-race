@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Responses</h1>
-
 {% if request.user.profile.is_pro %}
+<h1 class="w3-padding-32 w3-white w3-circle w3-text-blue w3-center" style="font-family:cursive">Responses</h1>
 
-<table style="width:100%">
-  <caption>Response-sheet</caption>
+<div class="w3-container">
+<table class="w3-table-all w3-card-4 w3-text-blue" style="color:black">
+  <caption class="w3-card w3-centre w3-white">Response-sheet</caption>
   <tr>
     <th>QUESTION</th>
     <th>RESPONSE</th>
@@ -14,21 +14,24 @@
   </tr>
   {% for res in response %}
   <tr>
-    <td><i class="material-icons">help</i>{{res.question}}</td>
-    <td>{{res.answer}}</td>
+    <td style="color:black"><i class="material-icons">help</i>{{res.question}}</td>
+    <td style="color:black">{{res.answer}}</td>
     {% if res.is_correct %}
-    <td>Correct => {{res.attempt}}</td>
+    <td style="color:green">Correct <span class="w3-badge w3-green">{{res.attempt}}</span></td>
     {% else %}
-    <td>Incorrect => {{res.attempt}}</td>
+    <td style="color:red">Incorrect <span class="w3-badge w3-red">{{res.attempt}}</span></td>
     {% endif %}
   </tr>
   {% endfor %}
 </table>
+</div>
 
 {% else %}
-
-<h1>You are not pro user...</h1>
-<h2 class="warning">Send your request in feedback section and get responses of your participants. Hurry up!</h2>
+<div class="w3-container w3-light-grey">
+  <h1 class="w3-padding-32 w3-red w3-card w3-text-white w3-center" style="font-family:cursive">You are not a pro user</h1>
+  <p class="w3-panel w3-pale-red w3-leftbar w3-border-red">Send your request in feedback section to become a pro user
+    and get responses of all your participants. It may take time to process the request.</p>
+</div>
 
 {% endif %}
 

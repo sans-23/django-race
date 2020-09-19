@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="w3-container w3-light-grey">
+  <h1 class="w3-card w3-teal w3-center w3-serif">This is your report</h1>
+<div class="w3-card">
+  <div class="w3-card w3-center w3-teal">NAME</div>
+  <div class="w3-center w3-white w3-text-teal">{{request.user}}</div>
+</div>
+<br>
+<div class="w3-card">
+  <div class="w3-center w3-teal">QUIZ</div>
+  <div class="w3-center w3-white w3-text-teal">{{report.quiz}}</div>
+</div>
+<br>
+  <div class="w3-card">
+    <div class="w3-center w3-teal">SCORE</div>
+    <div class="w3-center w3-white w3-text-teal">{{report.score}}</div>
+  </div>
 
-<h1>This is your report</h1>
+</div>
 
-<p class="result-h">NAME</p>
-<p class="result">{{request.user}}</p>
-<p class="result-h">QUIZ</p>
-<p class="result">{{report.quiz}}</p>
-<p class="result-h">SCORE</p>
-<p class="result">{{report.score}}</p>
 
 
 <a href="{% url 'quiz:quiz_list' %}">Try another Quiz</a>

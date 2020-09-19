@@ -21,7 +21,7 @@ from django.conf import settings
 from quiz.views import quiz_list
 
 urlpatterns = [
-    path('', quiz_list),
+    path('', quiz_list, name='home'),
     path('admin/', admin.site.urls),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('quiz/', include('quiz.urls')),

@@ -1,7 +1,7 @@
 body{
-  background-color: #0f121f;
+  background-color: #969a9e47;
   background-repeat: no-repeat;
-  color: #fff;
+  color: #555555;
 }
 
 body*{
@@ -13,6 +13,10 @@ h1, h2, h3, h4{
   margin: 0;
 }
 
+a {
+  text-decoration:none;
+}
+
 h1{
   color:#00dba0;
   font-family:cursive;
@@ -20,54 +24,25 @@ h1{
   font-size:3em;
 }
 
-a, a:visited{
-  color: #fff;
-
-  text-decoration: none;
-}
 
 a:hover{
-  color:#00dba0;
+  color:#2196f3;
 }
 
-.question{
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-top:20px;
-  margin-bottom:20px;
-  border: 3px ridge #00dba0;
-  border-radius:23px;
-  padding:30px;
-}
-
-.about{
-  border: 3px ridge #00dba0;
-  border-radius:20px;
-  padding:20px;
-  font-size:1.4em;
-  font-family:cursive
-}
-
-.warning{
-  color:red;
-}
-
-.site-form{
-  margin-top:60px;
-  border: 3px ridge #00dba0;
-  border-radius:20px;
-  padding:20px;
-}
-
-.site-form input, .site-form textarea{
-  display:block;
-  margin: 20px 0 0 0;
-  padding: 5px;
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: none;
 }
 
 .helptext, .helptext ul{
   margin: 0 auto 20px;
-  color:#bbb;
+  color:#650d0d;
   font-size: 0.9em;
   display:block;
 }
@@ -75,8 +50,8 @@ a:hover{
 .errorlist li{
   padding: 10px;
   list-style-type: none;
-  border: 2px ridge #ff5722;
-  color:#ff5722;
+  border: 2px ridge #9040108a;
+  color:#f80303;
   margin:10px 0;
 }
 
@@ -84,55 +59,16 @@ a:hover{
   padding:0;
 }
 
-.site-form input[type="submit"]{
-  background-color: #00dba0;
-  border:0;
-  color:#fff;
-  font-family:cursive;
-  font-weight:bold;
-  font-size:1.6em;
-  border-radius: 4px;
-  margin: 10px 0;
-
-}
-
-.questions input[type="submit"]{
-  background-color: #00dba0;
-  border:3px ridge yellow;
-  color:#fff;
-  font-family:cursive;
-  font-weight:bold;
-  font-size:1.6em;
-  border-radius: 4px;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top:20px;
-  margin-bottom:20px;
-  padding:10px;
-  width:60%;
-}
 
 .wrapper{
   max-width: 960px;
   margin: 0 auto;
+  height: 100px;
 }
 
 .wrapper form p label{
-  color:#00dba0;
+  color:#2196f3;
 }
-
-.wrapper form p input{
-  border: 3px ridge #00dba0;
-}
-
-.wrapper form p select{
-  border: 3px ridge #00dba0;
-}
-
-.wrapper form p textarea{
-  border: 3px ridge #00dba0;
-}
-
 
 div.wrapper h1{
   text-align:center;
@@ -159,6 +95,7 @@ nav a{
   color: white;
   text-decoration: none;
   font-size: 17px;
+
 }
 
 @media screen and (max-width: 500px) {
@@ -172,61 +109,6 @@ button{
   background: #0f121f;
   color:white;
   cursor: pointer;
-}
-
-.quizes{
-  border: 4px ridge #00dba0;
-  border-radius:14px;
-  padding:20px 0;
-  height: 390px;
-  overflow: scroll;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #00dba0;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #79caaa;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #00dba0;
-}
-
-.quiz h2 a{
-  color:yellow;
-  font-family:cursive;
-  font-weight:800;
-}
-
-.result-h{
-  color:yellow;
-  font-size:1.5em;
-  font-weight:bold;
-}
-
-.result{
-  font-size:2em;
-  font-weight:lighter;
-  font-family:cursive
-}
-
-table, th, td {
-  border: 4px ridge yellow;
-  border-radius: 4px;
-  border
-}
-
-th, td {
-  padding: 15px;
-  font-family: cursive;
 }
 
 label > input[type="radio"] {
@@ -244,21 +126,15 @@ label > input[type="radio"] + *::before {
   border-radius:30%;
   border-style: solid;
   border-width: 0.12rem;
-  border-color: yellow;
+  border-color: teal;
 }
 
 label > input[type="radio"]:checked + *::before {
-  background: radial-gradient(#00dba0 0%, #00dba0 40%, transparent 50%, transparent);
-  border-color: #00dba0;
+  background: radial-gradient(#009688 0%, #009688 40%, transparent 50%, transparent);
+  border-color: #009688;
 }
 label > input[type="radio"]:checked + * {
-  color: #00dba0;
-}
-
-.question h2{
-  font-size:2.0em;
-  font-family:cursive;
-  font-size:bold;
+  color: #009688;
 }
 
 label{
@@ -270,7 +146,6 @@ label{
 caption{
   font-size:2em;
   font-family:cursive;
-  color:#ccc;
 }
 
 .material-icons.md-18 { font-size: 18px; }

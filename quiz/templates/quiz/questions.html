@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if quiz.author == request.user %}
-    <h1>Questions</h1>
+<h1 class="w3-padding-32 w3-white w3-circle w3-center" style="font-family:cursive">Questions</h1>
     <div class="questions">
 
       <form action="{% url 'quiz:question_list' slug=slug%}" method="post">
@@ -11,25 +11,104 @@
         {% for question in questions %}
         {% csrf_token %}
 
-        <div class="question">
-          <h2><i class="material-icons md-36">help</i>{{question.question}}</h2>
+        <div class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+          <h2 class="w3-container w3-teal"><i class="material-icons md-36">help</i> {{question.question}}</h2>
 
-          <h3><a href="{% url 'quiz:question_update' question.id %}"><i class="material-icons">create</i>Edit</a> |
-            <a href="{% url 'quiz:question_delete' question.id %}"><i class="material-icons">delete</i>Delete</a></h3>
+          <h3><a style="color:teal" href="{% url 'quiz:question_update' question.id %}"><i class="material-icons">create</i>Edit</a> |
+            <a style="color:red" href="{% url 'quiz:question_delete' question.id %}"><i class="material-icons">delete</i>Delete</a></h3>
 
-          <input type="radio" name="{{question.id}}" value="{{question.option1}}">
-          <label for="{{question.option1}}">{{question.option1}}</label><br>
-          <input type="radio" name="{{question.id}}" value="{{question.option2}}">
-          <label for="{{question.option2}}">{{question.option2}}</label><br>
-          <input type="radio" name="{{question.id}}" value="{{question.option3}}">
-          <label for="{{question.option3}}">{{question.option3}}</label><br>
-          <input type="radio" name="{{question.id}}" value="{{question.option4}}">
-          <label for="{{question.option4}}">{{question.option4}}</label><br>
+            <div class="w3-container w3-white">
+              <label>
+                    <input type="radio" name="{{question.id}}" value="{{question.option1}}">
+                    <span>{{question.option1}}</span>
+              </label><br>
+
+              <label>
+                    <input type="radio" name="{{question.id}}" value="{{question.option2}}">
+                    <span>{{question.option2}}</span>
+              </label><br>
+
+              <label>
+                    <input type="radio" name="{{question.id}}" value="{{question.option3}}">
+                    <span>{{question.option3}}</span>
+              </label><br>
+
+              <label>
+                    <input type="radio" name="{{question.id}}" value="{{question.option4}}">
+                    <span>{{question.option4}}</span>
+              </label><br>
+            </div>
         </div>
 
         {% endfor %}
 
       </form>
+
+      <input class="w3-input w3-input" type="text" value="sans1812.pythonanywhere.com{% url 'quiz:exam' slug=slug %}" id="myInput">
+
+      <div class="tooltip">
+      <button class="w3-btn w3-teal" onclick="myFunction()" onmouseout="outFunc()">
+        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+        Copy text
+        </button>
+      </div>
+
+      <script>
+      function myFunction() {
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copied: " + copyText.value;
+      }
+
+      function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copy to clipboard";
+      }
+      </script>
+
+<style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
 
     </div>
 

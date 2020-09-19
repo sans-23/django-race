@@ -8,26 +8,34 @@
     <link rel="stylesheet" href={% static "quiz/styles.css" %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
     <header class="wrapper">
           {% if user.is_authenticated %}
 
-            <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
-              {% csrf_token %}
-              <button type="submit">Logout</button>
+<div class="w3-top">
+  <div class="w3-bar w3-blue w3-text-white w3-border">
+    <a href="{% url 'quiz:quiz_list' %}" class="w3-bar-item w3-button w3-light-grey"> <i class="material-icons">home</i>  Home</a>
+    <a href="{% url 'quiz:my_quiz' %}" class="w3-bar-item w3-button"> <i class="material-icons">folder_special</i>  My Quiz</a>
+    <a href="{% url 'quiz:quiz_create' %}" class="w3-bar-item w3-button"> <i class="material-icons">note_add</i> Create Quiz</a>
+    <a href="{% url 'leaderboard:attempts' %}" class="w3-bar-item w3-button"> <i class="material-icons">analytics</i> Analytics</a>
+    <a href="{% url 'feedback:feed_back' %}" class="w3-bar-item w3-button"> <i class="material-icons">feedback</i> FeedBack</a>
+    <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+      {% csrf_token %}
+      <button class="w3-bar-item w3-button" type="submit">Logout</button>
 
-            </form>
-    <nav>
-          <a href="{% url 'quiz:my_quiz' %}"><i class="material-icons">folder_special</i> My Quiz</a>
-          <a href="{% url 'quiz:quiz_create' %}"><i class="material-icons">note_add</i> Create A New Quiz</a>
-          <a href="{% url 'leaderboard:attempts' %}"><i class="material-icons">analytics</i> Analytics</a>
-          <a href="{% url 'feedback:feed_back' %}"><i class="material-icons">feedback</i> FeedBack </a>
+    </form>
+
+  </div>
+</div>
           {% else %}
-    <nav>
-          <a href="{% url 'accounts:login' %}">Login</a>
-          <a href="{% url 'accounts:signup' %}">Signup</a>
-    </nav>
+<div class="w3-top">
+  <div class="w3-bar w3-blue w3-text-white">
+    <a href="{% url 'accounts:login' %}" class="w3-bar-item w3-button">Login</a>
+    <a href="{% url 'accounts:signup' %}" class="w3-bar-item w3-button">Signup</a>
+  </div>
+</div>
           {% endif %}
     </header>
 
